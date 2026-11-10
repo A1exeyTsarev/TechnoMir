@@ -1,0 +1,105 @@
+<Page x:Class="TechnoMir.Pages.ProductCatalogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Каталог — ТехноМир">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Поиск, фильтры и сортировка работают вместе -->
+        <WrapPanel Grid.Row="0" Margin="0,0,0,4">
+            <StackPanel Margin="4">
+                <TextBlock Text="Поиск" Style="{StaticResource FieldLabel}"/>
+                <TextBox x:Name="txtSearch" Width="240" MaxLength="100" TextChanged="Filters_Changed"
+                         ToolTip="Поиск по наименованию, артикулу, описанию и характеристикам"/>
+            </StackPanel>
+            <StackPanel Margin="4">
+                <TextBlock Text="Категория" Style="{StaticResource FieldLabel}"/>
+                <ComboBox x:Name="cmbCategory" Width="200" SelectionChanged="Filters_Changed"/>
+            </StackPanel>
+            <StackPanel Margin="4">
+                <TextBlock Text="Производитель" Style="{StaticResource FieldLabel}"/>
+                <ComboBox x:Name="cmbManufacturer" Width="170" SelectionChanged="Filters_Changed"/>
+            </StackPanel>
+            <StackPanel Margin="4">
+                <TextBlock Text="Сортировка" Style="{StaticResource FieldLabel}"/>
+                <ComboBox x:Name="cmbSort" Width="190" SelectionChanged="Filters_Changed"/>
+            </StackPanel>
+            <StackPanel Margin="4" VerticalAlignment="Bottom">
+                <CheckBox x:Name="chkDiscountOnly" Content="Только со скидкой" Margin="0,0,0,8"
+                          Checked="Filters_Changed" Unchecked="Filters_Changed"/>
+            </StackPanel>
+        </WrapPanel>
+
+        <TextBlock Grid.Row="1" x:Name="txtCount" Style="{StaticResource MutedText}" Margin="8,0,0,4"/>
+
+        <ListView x:Name="lvProducts" Grid.Row="2" HorizontalContentAlignment="Stretch"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  MouseDoubleClick="lvProducts_MouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Card}" Background="{Binding CardBackground}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="170"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Source="{Binding ImageSource}"
+                                   Width="100" Height="100" Stretch="Uniform"/>
+
+                            <StackPanel Grid.Column="1" Margin="12,0">
+                                <TextBlock FontSize="16" FontWeight="Bold" TextWrapping="Wrap">
+                                    <Run Text="{Binding ManufacturerName, Mode=OneWay}"/>
+                                    <Run Text=" | "/>
+                                    <Run Text="{Binding Name}"/>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource MutedText}">
+                                    <Run Text="Артикул:"/>
+                                    <Run Text="{Binding Article}"/>
+                                    <Run Text="  ·  "/>
+                                    <Run Text="{Binding CategoryName, Mode=OneWay}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding Subcategories.SubcategoryName, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Specifications}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                                <TextBlock Text="{Binding QuantityText, Mode=OneWay}" Margin="0,4,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Border Background="{StaticResource DangerColor}" CornerRadius="3" Padding="6,1"
+                                        HorizontalAlignment="Right" Visibility="{Binding OldPriceVisibility}">
+                                    <TextBlock Text="{Binding DiscountText}" Foreground="White" FontWeight="Bold"/>
+                                </Border>
+                                <TextBlock Foreground="{StaticResource TextMuted}" TextDecorations="Strikethrough"
+                                           HorizontalAlignment="Right" Visibility="{Binding OldPriceVisibility}"
+                                           Text="{Binding Price, StringFormat={}{0:N2} ₽}"/>
+                                <TextBlock FontSize="18" HorizontalAlignment="Right"
+                                           FontWeight="{Binding PriceWeight}"
+                                           Text="{Binding FinalPrice, Mode=OneWay, StringFormat={}{0:N2} ₽}"/>
+                                <TextBlock Text="★ свыше 1000 ₽" HorizontalAlignment="Right" FontWeight="Bold"
+                                           Foreground="#A86A00" Visibility="{Binding ExpensiveVisibility}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Center" Margin="0,6,0,0">
+            <Button x:Name="btnOpenProduct" Content="Открыть товар" Click="btnOpenProduct_Click"/>
+            <Button x:Name="btnCart" Content="Корзина" Click="btnCart_Click"/>
+            <Button x:Name="btnOrderHistory" Content="Мои заказы" Click="btnOrderHistory_Click"/>
+            <Button x:Name="btnAddProduct" Content="Добавить товар" Click="btnAddProduct_Click"/>
+            <Button x:Name="btnEditProduct" Content="Изменить товар" Click="btnEditProduct_Click"/>
+            <Button x:Name="btnDeleteProduct" Content="Удалить товар" Style="{StaticResource DangerButton}"
+                    Click="btnDeleteProduct_Click"/>
+            <Button x:Name="btnDatabaseTables" Content="Таблицы БД" Click="btnDatabaseTables_Click"/>
+        </WrapPanel>
+    </Grid>
+</Page>

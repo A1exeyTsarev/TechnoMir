@@ -1,0 +1,24 @@
+<Page x:Class="TechnoMir.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Вход — ТехноМир">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="340" Margin="20">
+            <Image Source="/Images/logo.png" Height="90" Stretch="Uniform" Margin="0,0,0,16"/>
+            <TextBlock Text="Вход в систему" Style="{StaticResource PageTitle}" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Email или телефон" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="txtLogin" MaxLength="150" KeyDown="Field_KeyDown"/>
+
+            <TextBlock Text="Пароль" Style="{StaticResource FieldLabel}"/>
+            <PasswordBox x:Name="pbPassword" MaxLength="50" KeyDown="Field_KeyDown"/>
+
+            <TextBlock x:Name="txtLockInfo" Foreground="{StaticResource DangerColor}"
+                       TextWrapping="Wrap" Margin="0,4" Visibility="Collapsed"/>
+
+            <Button x:Name="btnLogin" Content="Войти" Margin="0,12,0,4" Click="btnLogin_Click"/>
+            <Button x:Name="btnRegister" Content="Регистрация" Margin="0,4"
+                    Style="{StaticResource SecondaryButton}" Click="btnRegister_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

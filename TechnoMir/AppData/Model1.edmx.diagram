@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea7dcf0454c343e58736d5f87c12f208" Name="Diagram1">
+        <EntityTypeShape EntityType="TechnoMirModel.Categories" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Colors" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Manufacturers" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.OrderItems" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Orders" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.OrderStatuses" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.PickupPoints" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Products" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Roles" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.StockItems" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Subcategories" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Suppliers" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnoMirModel.Users" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <AssociationConnector Association="TechnoMirModel.FK_Subcategories_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_StockItems_Colors" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Products_Manufacturers" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_OrderItems_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_OrderItems_StockItems" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Orders_OrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Orders_PickupPoints" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Products_Subcategories" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Products_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_StockItems_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnoMirModel.FK_Users_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

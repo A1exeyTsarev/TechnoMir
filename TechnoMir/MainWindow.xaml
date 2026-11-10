@@ -1,0 +1,38 @@
+<Window x:Class="TechnoMir.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ТехноМир — магазин электроники"
+        Height="760" Width="1200" MinHeight="560" MinWidth="820"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Images/logo.ico">
+    <DockPanel>
+        <!-- Шапка: логотип, название, ФИО пользователя, кабинет и выход -->
+        <Border DockPanel.Dock="Top" Background="{StaticResource AccentBackground}" Padding="10,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="/Images/logo.png" Height="48" Stretch="Uniform"/>
+                <TextBlock Grid.Column="1" Text="ТехноМир" FontSize="24" FontWeight="Bold"
+                           Foreground="{StaticResource AccentDark}"
+                           VerticalAlignment="Center" Margin="12,0,0,0"/>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <TextBlock x:Name="txtUserName" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtUserRole" Style="{StaticResource MutedText}" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" x:Name="panelUserButtons" Orientation="Horizontal"
+                            VerticalAlignment="Center" Visibility="Collapsed">
+                    <Button x:Name="btnProfile" Content="Личный кабинет" Click="btnProfile_Click"/>
+                    <Button x:Name="btnLogout" Content="Выход" Style="{StaticResource SecondaryButton}"
+                            Click="btnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
+</Window>

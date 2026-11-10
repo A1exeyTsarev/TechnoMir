@@ -1,0 +1,76 @@
+<Page x:Class="TechnoMir.Pages.CartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Корзина — ТехноМир">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Корзина" Style="{StaticResource PageTitle}"/>
+
+        <Grid Grid.Row="1">
+            <ListView x:Name="lvCart" HorizontalContentAlignment="Stretch"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock FontWeight="Bold" TextWrapping="Wrap">
+                                        <Run Text="{Binding ManufacturerName}"/>
+                                        <Run Text=" | "/>
+                                        <Run Text="{Binding ProductName}"/>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource MutedText}">
+                                        <Run Text="Цвет:"/> <Run Text="{Binding ColorName}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                           Text="{Binding PricePerUnit, StringFormat={}{0:N2} ₽}"/>
+                                <TextBox Grid.Column="2" Text="{Binding Quantity, Mode=OneWay}" MaxLength="3"
+                                         VerticalContentAlignment="Center" Margin="4,0"
+                                         ToolTip="Измените количество и нажмите Tab"
+                                         PreviewTextInput="txtQuantity_PreviewTextInput"
+                                         LostFocus="txtQuantity_LostFocus"/>
+                                <TextBlock Grid.Column="3" VerticalAlignment="Center" FontWeight="Bold"
+                                           HorizontalAlignment="Right"
+                                           Text="{Binding Sum, Mode=OneWay, StringFormat={}{0:N2} ₽}"/>
+                                <Button Grid.Column="4" Content="Убрать" Style="{StaticResource DangerButton}"
+                                        MinWidth="80" Tag="{Binding}" Click="btnRemoveItem_Click"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock x:Name="txtEmpty" Text="Корзина пуста. Добавьте товары из каталога."
+                       Style="{StaticResource MutedText}" FontSize="16"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Пункт выдачи -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock Text="Пункт выдачи:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="Bold"/>
+            <ComboBox x:Name="cmbPickupPoint" Width="420" DisplayMemberPath="Address"/>
+        </StackPanel>
+
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <TextBlock x:Name="txtTotal" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,16,0"/>
+            <Button x:Name="btnCheckout" Content="Оформить заказ" Click="btnCheckout_Click"/>
+            <Button x:Name="btnClearCart" Content="Очистить" Style="{StaticResource SecondaryButton}"
+                    Click="btnClearCart_Click"/>
+            <Button x:Name="btnBack" Content="В каталог" Style="{StaticResource SecondaryButton}"
+                    Click="btnBack_Click"/>
+        </WrapPanel>
+    </Grid>
+</Page>
